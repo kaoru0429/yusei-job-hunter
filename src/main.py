@@ -15,7 +15,9 @@ PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.scrapers.scraper_104 import Platform104Scraper
+from src.scrapers.scraper_cakeresume import CakeResumeScraper
 from src.matcher.job_matcher import JobMatcher, MatchResult, batch_match
+from src.notifier import EmailNotifier, LineNotifier
 
 # 設定日誌
 logging.basicConfig(
@@ -44,6 +46,12 @@ class JobHunter:
 
         # 初始化元件
         self.matcher = JobMatcher(str(self.project_root / 'config' / 'profile.yaml'))
+
+        # 初始化通知器
+        self.notifiers = [
+            EmailNotifier(),
+            LineNotifier()
+        ]
 
         logger.info("JobHunter 初始化完成")
 
@@ -86,9 +94,19 @@ class JobHunter:
             logger.error(f"104 爬取失敗: {e}")
             results['errors'].append(f"104: {str(e)}")
 
+        # CakeResume
+        try:
+            logger.info("搜尋 CakeResume...")
+            scraper_cr = CakeResumeScraper(str(self.project_root / 'config' / 'platforms.yaml'))
+            jobs_cr = scraper_cr.search_all()
+            all_jobs.extend(jobs_cr)
+            logger.info(f"CakeResume 找到 {len(jobs_cr)} 個職缺")
+        except Exception as e:
+            logger.error(f"CakeResume 爬取失敗: {e}")
+            results['errors'].append(f"CakeResume: {str(e)}")
+
         # TODO: 加入其他平台爬蟲
         # - LinkedIn
-        # - CakeResume
         # - Yourator
 
         results['jobs_found'] = len(all_jobs)
@@ -274,11 +292,9 @@ class JobHunter:
 
     def _send_notification(self, high_matches: List[MatchResult]):
         """發送通知（高度匹配職缺）"""
-        # TODO: 實作 Email 和 LINE 通知
-
         logger.info(f"需要通知 {len(high_matches)} 個高度匹配職缺")
 
-        # 簡易版本：輸出到 console
+        # 1. 輸出到 console
         print("\n" + "=" * 60)
         print("🔔 高度匹配職缺通知")
         print("=" * 60)
@@ -291,6 +307,10 @@ class JobHunter:
             print(f"   連結: {m.url}")
 
         print("\n" + "=" * 60)
+
+        # 2. 發送通知
+        for notifier in self.notifiers:
+            notifier.send(high_matches)
 
 
 def main():
