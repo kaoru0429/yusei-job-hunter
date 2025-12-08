@@ -1,0 +1,152 @@
+# ========================================
+# Yusei Job Hunter - 職缺平台配置
+# ========================================
+
+platforms:
+  # 104 人力銀行
+  platform_104:
+    name: "104人力銀行"
+    enabled: true
+    priority: 1
+    base_url: "https://www.104.com.tw"
+    search_url: "https://www.104.com.tw/jobs/search/"
+
+    # 搜尋關鍵字組合
+    search_queries:
+      - keywords: "報關 半導體"
+        category: "物流/運輸"
+      - keywords: "空運出口 OP"
+        category: "物流/運輸"
+      - keywords: "貿易合規"
+        category: "物流/運輸"
+      - keywords: "自貿區 保稅"
+        category: "物流/運輸"
+      - keywords: "ASML 報關"
+        category: ""
+      - keywords: "Export Control"
+        category: ""
+      - keywords: "危險品 物流"
+        category: "物流/運輸"
+
+    # 搜尋參數
+    params:
+      area: "6001001000,6001002000"  # 桃園+台北
+      jobexp: "5,6,7"                 # 5-10年經驗
+      order: "12"                     # 依最新排序
+
+    # 爬蟲設定
+    scraper:
+      method: "selenium"  # 或 "api" 如果有
+      delay: 2            # 請求間隔（秒）
+      max_pages: 5        # 最大爬取頁數
+
+  # LinkedIn
+  linkedin:
+    name: "LinkedIn"
+    enabled: true
+    priority: 2
+    base_url: "https://www.linkedin.com"
+    search_url: "https://www.linkedin.com/jobs/search/"
+
+    search_queries:
+      - keywords: "customs coordinator Taiwan"
+      - keywords: "export control Taiwan"
+      - keywords: "air freight Taiwan"
+      - keywords: "ASML Taiwan logistics"
+      - keywords: "semiconductor logistics Taiwan"
+      - keywords: "trade compliance Taiwan"
+
+    params:
+      location: "Taiwan"
+      f_E: "4"          # Senior level
+      f_TPR: "r604800"  # 過去一週
+
+    scraper:
+      method: "selenium"
+      delay: 3
+      max_pages: 3
+      requires_login: true
+
+  # CakeResume
+  cakeresume:
+    name: "CakeResume"
+    enabled: true
+    priority: 3
+    base_url: "https://www.cakeresume.com"
+    search_url: "https://www.cakeresume.com/jobs"
+
+    search_queries:
+      - keywords: "報關"
+      - keywords: "物流 資深"
+      - keywords: "供應鏈"
+      - keywords: "貿易合規"
+
+    params:
+      location: "taiwan"
+
+    scraper:
+      method: "requests"
+      delay: 2
+      max_pages: 3
+
+  # Yourator
+  yourator:
+    name: "Yourator"
+    enabled: true
+    priority: 4
+    base_url: "https://www.yourator.co"
+    search_url: "https://www.yourator.co/jobs"
+
+    search_queries:
+      - keywords: "物流"
+      - keywords: "供應鏈"
+
+    scraper:
+      method: "requests"
+      delay: 2
+      max_pages: 2
+
+  # 1111 人力銀行
+  platform_1111:
+    name: "1111人力銀行"
+    enabled: false  # 可選擇啟用
+    priority: 5
+    base_url: "https://www.1111.com.tw"
+
+# 全局爬蟲設定
+scraper_settings:
+  # User-Agent 輪替
+  user_agents:
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+  # 重試設定
+  retry:
+    max_attempts: 3
+    delay: 5
+
+  # 請求超時
+  timeout: 30
+
+  # 並發限制
+  max_concurrent: 2
+
+# 資料存儲設定
+storage:
+  # 職缺資料
+  jobs:
+    format: "json"
+    path: "data/jobs.json"
+    # 保留天數（超過會清理）
+    retention_days: 30
+
+  # 歷史記錄
+  history:
+    format: "json"
+    path: "data/history.json"
+
+  # 去重設定
+  deduplication:
+    enabled: true
+    # 用於識別重複的欄位
+    unique_fields: ["title", "company", "location"]
