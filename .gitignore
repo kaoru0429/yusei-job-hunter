@@ -1,26 +1,5 @@
-# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-.venv/
-ENV/
-env/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# 專案特定
-.env
-data/*.json
-data/*.log
-reports/*.md
-
-# 系統
-.DS_Store
-Thumbs.db
+*.pyc
+data/
+reports/
+*.log

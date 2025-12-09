@@ -75,11 +75,11 @@ Thumbs.db
 
 def main():
     print("\n🚀 Yusei Job Hunter - 初始化設定\n")
-    
+
     create_directories()
     create_env_template()
     create_gitignore()
-    
+
     print("\n" + "=" * 50)
     print("✅ 初始化完成！")
     print("=" * 50)

@@ -10,7 +10,11 @@ platforms:
     priority: 1
     base_url: "https://www.104.com.tw"
     search_url: "https://www.104.com.tw/jobs/search/"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     # 搜尋關鍵字組合
     search_queries:
       - keywords: "報關 半導體"
@@ -27,16 +31,27 @@ platforms:
         category: ""
       - keywords: "危險品 物流"
         category: "物流/運輸"
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     # 搜尋參數
     params:
       area: "6001001000,6001002000"  # 桃園+台北
       jobexp: "5,6,7"                 # 5-10年經驗
       order: "12"                     # 依最新排序
+<<<<<<< HEAD
       
     # 爬蟲設定
     scraper:
       method: "selenium"  # 或 "api" 如果有
+=======
+
+    # 爬蟲設定
+    scraper:
+      method: "requests"  # Use requests/API for better performance
+>>>>>>> origin/setup-job-hunter-project
       delay: 2            # 請求間隔（秒）
       max_pages: 5        # 最大爬取頁數
 
@@ -47,7 +62,11 @@ platforms:
     priority: 2
     base_url: "https://www.linkedin.com"
     search_url: "https://www.linkedin.com/jobs/search/"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     search_queries:
       - keywords: "customs coordinator Taiwan"
       - keywords: "export control Taiwan"
@@ -55,12 +74,20 @@ platforms:
       - keywords: "ASML Taiwan logistics"
       - keywords: "semiconductor logistics Taiwan"
       - keywords: "trade compliance Taiwan"
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     params:
       location: "Taiwan"
       f_E: "4"          # Senior level
       f_TPR: "r604800"  # 過去一週
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     scraper:
       method: "selenium"
       delay: 3
@@ -74,16 +101,27 @@ platforms:
     priority: 3
     base_url: "https://www.cakeresume.com"
     search_url: "https://www.cakeresume.com/jobs"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
     search_queries:
       - keywords: "報關"
       - keywords: "物流 資深"
       - keywords: "供應鏈"
       - keywords: "貿易合規"
+<<<<<<< HEAD
       
     params:
       location: "taiwan"
       
+=======
+
+    params:
+      location: "taiwan"
+
+>>>>>>> origin/setup-job-hunter-project
     scraper:
       method: "requests"
       delay: 2
@@ -96,11 +134,19 @@ platforms:
     priority: 4
     base_url: "https://www.yourator.co"
     search_url: "https://www.yourator.co/jobs"
+<<<<<<< HEAD
     
     search_queries:
       - keywords: "物流"
       - keywords: "供應鏈"
       
+=======
+
+    search_queries:
+      - keywords: "物流"
+      - keywords: "供應鏈"
+
+>>>>>>> origin/setup-job-hunter-project
     scraper:
       method: "requests"
       delay: 2
@@ -119,15 +165,26 @@ scraper_settings:
   user_agents:
     - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
   # 重試設定
   retry:
     max_attempts: 3
     delay: 5
+<<<<<<< HEAD
     
   # 請求超時
   timeout: 30
   
+=======
+
+  # 請求超時
+  timeout: 30
+
+>>>>>>> origin/setup-job-hunter-project
   # 並發限制
   max_concurrent: 2
 
@@ -139,12 +196,20 @@ storage:
     path: "data/jobs.json"
     # 保留天數（超過會清理）
     retention_days: 30
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
   # 歷史記錄
   history:
     format: "json"
     path: "data/history.json"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/setup-job-hunter-project
   # 去重設定
   deduplication:
     enabled: true
