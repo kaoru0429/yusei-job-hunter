@@ -1,0 +1,286 @@
+# ========================================
+# Yusei Job Hunter - 個人專長配置
+# ========================================
+# 這個檔案定義了你的專業背景，系統會根據這些資訊
+# 自動搜尋並計算職缺匹配度
+# ========================================
+
+personal_info:
+  name: "Yusei Su"
+  name_zh: "蘇祐生"
+  current_title: "Operations Export & Express 專員"
+  current_company: "DPD Taiwan (Linehaul Express Taiwan Ltd.)"
+  location: "桃園市"
+  years_of_experience: 10
+
+# 核心專長 - 用於計算匹配度權重
+core_skills:
+  # 空運出口操作 (權重: 10)
+  air_freight_export:
+    weight: 10
+    keywords:
+      primary:
+        - "空運出口"
+        - "Air Freight Export"
+        - "空運OP"
+        - "航空貨運"
+        - "MAWB"
+        - "HAWB"
+        - "訂艙"
+        - "艙單"
+      secondary:
+        - "航班協調"
+        - "提單"
+        - "文件製作"
+        - "出口作業"
+        
+  # 貿易合規 (權重: 10)
+  trade_compliance:
+    weight: 10
+    keywords:
+      primary:
+        - "LECO"
+        - "Export Control"
+        - "出口管制"
+        - "貿易合規"
+        - "Trade Compliance"
+        - "Embargo"
+        - "禁運"
+        - "制裁"
+      secondary:
+        - "ICP"
+        - "內部控制"
+        - "合規專員"
+        - "Compliance Officer"
+        - "敏感貨物"
+        - "戰略性高科技"
+        
+  # 報關與保稅 (權重: 10)
+  customs_bonded:
+    weight: 10
+    keywords:
+      primary:
+        - "報關"
+        - "Customs"
+        - "保稅"
+        - "Bonded"
+        - "自由貿易港區"
+        - "自貿區"
+        - "FTZ"
+        - "HS Code"
+        - "稅則"
+      secondary:
+        - "D7報單"
+        - "D8報單"
+        - "AEO"
+        - "優質企業"
+        - "進儲"
+        - "轉口"
+        - "海關"
+        - "通關"
+        
+  # 危險品管理 (權重: 8)
+  dangerous_goods:
+    weight: 8
+    keywords:
+      primary:
+        - "危險品"
+        - "DG"
+        - "Dangerous Goods"
+        - "IATA DGR"
+        - "UN分類"
+      secondary:
+        - "包裝組別"
+        - "DG申報"
+        - "MSDS"
+        - "危險品專責"
+        
+  # 系統整合 (權重: 7)
+  system_integration:
+    weight: 7
+    keywords:
+      primary:
+        - "EDI"
+        - "系統整合"
+        - "IT窗口"
+        - "SAP"
+        - "WMS"
+        - "Tradvan"
+        - "關貿網路"
+      secondary:
+        - "系統開發"
+        - "流程自動化"
+        - "程式開發"
+        - "資料整合"
+        
+  # 半導體物流 (權重: 9)
+  semiconductor_logistics:
+    weight: 9
+    keywords:
+      primary:
+        - "半導體"
+        - "Semiconductor"
+        - "ASML"
+        - "Applied Materials"
+        - "AMAT"
+        - "晶圓"
+        - "光刻機"
+      secondary:
+        - "設備物流"
+        - "高科技物流"
+        - "精密設備"
+        - "逆物流"
+        - "復運"
+
+# 產業經驗 - 優先匹配這些產業
+industry_experience:
+  - name: "國際快遞"
+    companies: ["UPS", "DPD", "DHL", "FedEx", "TNT"]
+    weight: 8
+  - name: "半導體設備"
+    companies: ["ASML", "Applied Materials", "AMAT", "Lam Research", "Tokyo Electron", "TEL"]
+    weight: 9
+  - name: "貨運承攬"
+    companies: ["立通", "Speedmark", "中菲行", "台驊", "永儲"]
+    weight: 7
+  - name: "航空貨運"
+    companies: ["長榮航空", "華航貨運", "國泰航空"]
+    weight: 7
+
+# 資格認證
+certifications:
+  - name: "自由貿易港區自主管理專責人員"
+    date: "2025-03"
+    keywords: ["自貿區專責", "港區專責人員"]
+  - name: "LECO (Local Embargo Compliance Officer)"
+    keywords: ["LECO", "出口管制官"]
+  - name: "TOEIC 730"
+    keywords: ["TOEIC", "多益"]
+
+# 目標職缺設定
+target_positions:
+  # 主要目標 - 最高優先級
+  primary:
+    - title: "報關協調專員"
+      keywords: ["報關", "Customs Coordinator", "保稅"]
+      target_companies: ["ASML", "Applied Materials", "Lam Research"]
+      min_match_score: 80
+      
+    - title: "貿易合規專員"
+      keywords: ["Compliance", "合規專員", "Export Control"]
+      target_companies: ["外商", "科技業", "半導體"]
+      min_match_score: 75
+      
+    - title: "空運出口主管"
+      keywords: ["空運出口", "資深OP", "操作主管"]
+      target_companies: ["國際快遞", "貨運承攬"]
+      min_match_score: 70
+
+  # 次要目標
+  secondary:
+    - title: "供應鏈協調專員"
+      keywords: ["Supply Chain", "物流協調", "供應鏈"]
+      min_match_score: 65
+      
+    - title: "物流系統專員"
+      keywords: ["物流系統", "EDI", "IT窗口"]
+      min_match_score: 60
+
+# 搜尋條件
+search_criteria:
+  # 地理位置
+  locations:
+    preferred:
+      - "桃園市"
+      - "桃園大園"
+      - "桃園機場"
+      - "新北市"
+    acceptable:
+      - "台北市"
+      - "台北松山"
+      - "新竹市"
+      - "新竹縣"
+    
+  # 薪資期望
+  salary:
+    minimum: 50000
+    preferred: 60000
+    currency: "TWD"
+    
+  # 工作類型
+  job_type:
+    - "全職"
+    - "正職"
+    
+  # 經驗要求（可接受的範圍）
+  experience_range:
+    min: 5
+    max: 15
+
+# 排除條件 - 符合這些條件的職缺會被過濾
+exclusions:
+  # 排除的職缺標題
+  titles:
+    - "實習"
+    - "兼職"
+    - "約聘"
+    - "派遣"
+    - "業務代表"
+    - "業務專員"
+    
+  # 排除的公司（如果有不想再合作的）
+  companies: []
+  
+  # 排除的地區
+  locations:
+    - "台中"
+    - "高雄"
+    - "中國大陸"
+
+# 匹配度計算規則
+matching_rules:
+  # 分數閾值
+  thresholds:
+    high: 80      # 高度匹配 - 立即通知
+    medium: 60    # 中度匹配 - 加入報告
+    low: 40       # 低度匹配 - 僅記錄
+    
+  # 加分項目
+  bonus_points:
+    target_company: 15      # 目標公司
+    certification_match: 10 # 認證匹配
+    location_preferred: 10  # 優先地點
+    salary_above_min: 5     # 薪資超過最低要求
+    
+  # 扣分項目
+  penalty_points:
+    location_acceptable: -5  # 可接受但非優先地點
+    experience_mismatch: -10 # 經驗要求不符
+
+# 通知設定
+notification:
+  # Email 通知
+  email:
+    enabled: true
+    recipients:
+      - "kaoru0429@gmail.com"
+    # 僅通知高度匹配的職缺
+    min_score: 75
+    
+  # LINE 通知
+  line:
+    enabled: false  # 需要設定 LINE_TOKEN
+    min_score: 80
+
+# 報告設定
+report:
+  # 每日報告
+  daily:
+    enabled: true
+    format: "markdown"
+    output_dir: "reports"
+    
+  # 週報
+  weekly:
+    enabled: true
+    day: "sunday"

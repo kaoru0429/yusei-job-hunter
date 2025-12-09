@@ -1,0 +1,118 @@
+# GitHub Actions 工作流程
+# 每日自動執行職缺搜尋
+# ========================================
+
+name: Daily Job Search
+
+on:
+  # 排程執行：每天台灣時間 08:00 (UTC 00:00)
+  schedule:
+    - cron: '0 0 * * *'
+    
+  # 也可以手動觸發
+  workflow_dispatch:
+  
+  # Push 時測試（可選）
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'config/**'
+      - '.github/workflows/**'
+
+jobs:
+  search-jobs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. 取出程式碼
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # 2. 設定 Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      # 3. 安裝依賴
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      # 4. 建立必要目錄
+      - name: Create directories
+        run: |
+          mkdir -p data
+          mkdir -p reports
+          
+      # 5. 執行職缺搜尋
+      - name: Run job search
+        env:
+          # 如果需要 API 金鑰或其他機密
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+        run: |
+          python src/main.py
+          
+      # 6. 上傳報告為 Artifact
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-reports-${{ github.run_id }}
+          path: reports/
+          retention-days: 30
+          
+      # 7. 上傳資料為 Artifact
+      - name: Upload data
+        uses: actions/upload-artifact@v4
+        with:
+          name: job-data-${{ github.run_id }}
+          path: data/
+          retention-days: 7
+          
+      # 8. 提交報告到 Repository（可選）
+      - name: Commit and push reports
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add reports/ data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Daily job search report - $(date +'%Y-%m-%d')" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      # 9. 發送 Email 通知（如果有高度匹配）
+      - name: Check for high matches and notify
+        if: always()
+        run: |
+          if [ -f "data/matches_$(date +'%Y%m%d').json" ]; then
+            HIGH_COUNT=$(python -c "import json; data=json.load(open('data/matches_$(date +%Y%m%d).json')); print(len([d for d in data if d['level']=='high']))")
+            if [ "$HIGH_COUNT" -gt "0" ]; then
+              echo "🔥 Found $HIGH_COUNT high-match jobs!"
+              # TODO: 可以在這裡加入額外的通知邏輯
+            else
+              echo "No high-match jobs today"
+            fi
+          fi
+
+  # 可選：發送報告到 Telegram/Discord
+  notify:
+    needs: search-jobs
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Download reports
+        uses: actions/download-artifact@v4
+        with:
+          name: daily-reports-${{ github.run_id }}
+          path: reports/
+          
+      - name: Send notification
+        run: |
+          echo "Notification job completed"
+          # TODO: 加入 Telegram/Discord webhook 通知
