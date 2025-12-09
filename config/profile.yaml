@@ -33,7 +33,11 @@ core_skills:
         - "提單"
         - "文件製作"
         - "出口作業"
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 貿易合規 (權重: 10)
   trade_compliance:
     weight: 10
@@ -54,7 +58,11 @@ core_skills:
         - "Compliance Officer"
         - "敏感貨物"
         - "戰略性高科技"
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 報關與保稅 (權重: 10)
   customs_bonded:
     weight: 10
@@ -78,7 +86,11 @@ core_skills:
         - "轉口"
         - "海關"
         - "通關"
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 危險品管理 (權重: 8)
   dangerous_goods:
     weight: 8
@@ -94,7 +106,11 @@ core_skills:
         - "DG申報"
         - "MSDS"
         - "危險品專責"
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 系統整合 (權重: 7)
   system_integration:
     weight: 7
@@ -112,7 +128,11 @@ core_skills:
         - "流程自動化"
         - "程式開發"
         - "資料整合"
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 半導體物流 (權重: 9)
   semiconductor_logistics:
     weight: 9
@@ -165,12 +185,20 @@ target_positions:
       keywords: ["報關", "Customs Coordinator", "保稅"]
       target_companies: ["ASML", "Applied Materials", "Lam Research"]
       min_match_score: 80
+<<<<<<< HEAD
+      
+=======
 
+>>>>>>> origin/setup-job-hunter-project
     - title: "貿易合規專員"
       keywords: ["Compliance", "合規專員", "Export Control"]
       target_companies: ["外商", "科技業", "半導體"]
       min_match_score: 75
+<<<<<<< HEAD
+      
+=======
 
+>>>>>>> origin/setup-job-hunter-project
     - title: "空運出口主管"
       keywords: ["空運出口", "資深OP", "操作主管"]
       target_companies: ["國際快遞", "貨運承攬"]
@@ -181,7 +209,11 @@ target_positions:
     - title: "供應鏈協調專員"
       keywords: ["Supply Chain", "物流協調", "供應鏈"]
       min_match_score: 65
+<<<<<<< HEAD
+      
+=======
 
+>>>>>>> origin/setup-job-hunter-project
     - title: "物流系統專員"
       keywords: ["物流系統", "EDI", "IT窗口"]
       min_match_score: 60
@@ -200,18 +232,30 @@ search_criteria:
       - "台北松山"
       - "新竹市"
       - "新竹縣"
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 薪資期望
   salary:
     minimum: 50000
     preferred: 60000
     currency: "TWD"
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 工作類型
   job_type:
     - "全職"
     - "正職"
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 經驗要求（可接受的範圍）
   experience_range:
     min: 5
@@ -227,10 +271,17 @@ exclusions:
     - "派遣"
     - "業務代表"
     - "業務專員"
+<<<<<<< HEAD
+    
+  # 排除的公司（如果有不想再合作的）
+  companies: []
+  
+=======
 
   # 排除的公司（如果有不想再合作的）
   companies: []
 
+>>>>>>> origin/setup-job-hunter-project
   # 排除的地區
   locations:
     - "台中"
@@ -244,14 +295,22 @@ matching_rules:
     high: 80      # 高度匹配 - 立即通知
     medium: 60    # 中度匹配 - 加入報告
     low: 40       # 低度匹配 - 僅記錄
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 加分項目
   bonus_points:
     target_company: 15      # 目標公司
     certification_match: 10 # 認證匹配
     location_preferred: 10  # 優先地點
     salary_above_min: 5     # 薪資超過最低要求
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 扣分項目
   penalty_points:
     location_acceptable: -5  # 可接受但非優先地點
@@ -266,7 +325,11 @@ notification:
       - "kaoru0429@gmail.com"
     # 僅通知高度匹配的職缺
     min_score: 75
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # LINE 通知
   line:
     enabled: false  # 需要設定 LINE_TOKEN
@@ -279,7 +342,11 @@ report:
     enabled: true
     format: "markdown"
     output_dir: "reports"
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/setup-job-hunter-project
   # 週報
   weekly:
     enabled: true
